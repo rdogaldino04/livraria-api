@@ -27,6 +27,7 @@ import { LivrosService } from './livros.service';
         },
       },
     }),
+    TypeOrmModule.forFeature([Livro]),
   ],
   controllers: [AppController, LivrosController],
   providers: [AppService, LivrosService],
