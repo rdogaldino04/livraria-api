@@ -5,13 +5,13 @@ export class Livro {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: false })
   codigo: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, nullable: false })
   nome: string;
 
-  @Column({ type: 'decimal', precision: 5, scale: 2, default: 0 })
+  @Column({ type: 'decimal', precision: 5, scale: 2, default: 0, nullable: false })
   preco: number;
 
   constructor(codigo: string, nome: string, preco: number) {
