@@ -22,7 +22,11 @@ export class LivrosController {
 
   @Get(':id')
   async obterUm(@Param() params): Promise<Livro> {
-    return await this.livrosService.obterUm(params.id);
+    const livro = await this.livrosService.obterUm(params.id);
+    if (!livro) {
+      throw new NotFoundException('Book not found.');
+    }
+    return livro;
   }
 
   @Post()
