@@ -32,7 +32,12 @@ export class LivrosService {
     return await this.livroRepository.save(livro);
   }
 
-  async apagar(id: number): Promise<void> {
-    this.livroRepository.delete(id);
+  async apagar(id: number): Promise<Livro> {
+    const livroFindById = await this.obterUm(id);
+    if (livroFindById) {
+      this.livroRepository.delete(livroFindById.id);
+      return livroFindById;
+    }
+    return null;
   }
 }

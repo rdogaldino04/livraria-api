@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Post,
   Put,
@@ -36,6 +37,9 @@ export class LivrosController {
 
   @Delete(':id')
   async apagar(@Param() params): Promise<void> {
-    this.livrosService.apagar(params.id);
+    const livroDeleted = await this.livrosService.apagar(params.id);
+    if (!livroDeleted) {
+      throw new NotFoundException('Livro not found');
+    }
   }
 }
